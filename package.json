@@ -1,0 +1,26 @@
+{
+  "name": "gifsraper",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "async": "^2.1.4",
+    "cheerio": "^0.22.0",
+    "cheerio-req": "^1.2.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "iconv-lite": "^0.4.24",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.18.6",
+    "pug": "2.0.0-beta11",
+    "request": "^2.79.0",
+    "request-promise": "^4.2.2",
+    "underscore": "^1.9.1"
+  }
+}
