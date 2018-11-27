@@ -34,23 +34,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
-
-
 const options = {
   url: BASE_URL + "index.php",
   method: "GET",
@@ -68,9 +51,12 @@ const options = {
   }
 };
 
+var contentData = {};
+
 init(options);
 
 function init(options) {
+  console.log('initiating...');
   let postLinks = [];
   let contents = undefined;
   rp(options)
@@ -97,13 +83,31 @@ function init(options) {
       })
     })
     .then(function (res) {
-      // console.log(res);
       contents = scraperImages(res);
       setTimeout(() => {
-        // console.log(contents);
-      }, 2000);
+        fs.writeFile('file.json', JSON.stringify(contentData), (err) => {  
+          if (err) throw err;
+          console.log('Data written to file');
+        });
+      }, 3000);
     });
 };
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
+});
 
 module.exports = app;
 
@@ -197,8 +201,9 @@ function scraperImages(links) {
             //   if (imageList[key].attribs && imageList[key].attribs.src)
             //     imageLinkList.push(imageList[key].attribs.src);
             // }
-            const centerContent = $('td.show_content > pre > center');
+            const centerContent = $('td.show_content > pre');
             imageLinkList.push(centerContent.html());
+            contentData[link] = centerContent.html().toString();
           }
         );
       });

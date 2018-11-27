@@ -2,3 +2,5 @@ current task:
   ☐ get image links before index router get called
   ☐ save post links to json
   ☐ save each post content to json
+  ☐ remove 6park.com font
+  ☐ nodemon ignore file

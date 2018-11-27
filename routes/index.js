@@ -7,18 +7,27 @@ const _ = require('lodash');
 const request = require("request");
 const iconv = require('iconv-lite');
 const BASE_URL = 'https://site.6parker.com/enter1/';
+const fs = require('fs');
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
 
-  const { postLinks, postTitles } = await scraper(BASE_URL);
-  setTimeout(() => {
-    const imageLinkList = scraperImages(postLinks);
-    setTimeout(() => {
-      const content = '<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />' + imageLinkList.toString();
-      res.render('index', { content: content });
-    }, 10000);
-  }, 1000);
+  // const { postLinks, postTitles } = await scraper(BASE_URL);
+  let content = undefined;
+  fs.readFile('file.json', (err, data) => {
+    console.log('reading data');
+    content = JSON.parse(data);
+    res.render('index', {content: content});
+  });
+
+  // setTimeout(() => {
+  //   const imageLinkList = scraperImages(postLinks);
+  //   setTimeout(() => {
+  //     const content = '<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />' + imageLinkList.toString();
+  //     res.render('index', { content: content });
+  //     next();
+  //   }, 10000);
+  // }, 1000);
 });
 
 async function scraper(BASE_URL) {
@@ -103,7 +112,7 @@ function scraperImages(links) {
           // for (let key in imageList) {
           //   if (imageList[key].attribs && imageList[key].attribs.src) imageLinkList.push(imageList[key].attribs.src);
           // }
-          const centerContent = $('td.show_content > pre > center');
+          const centerContent = $('td.show_content > pre');
           imageLinkList.push(centerContent.html());
         }
       )
