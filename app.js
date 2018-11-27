@@ -8,7 +8,6 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var router = express.Router();
 var app = express();
 
 const cheerio = require("cheerio");
@@ -32,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/index", indexRouter);
 app.use("/users", usersRouter);
 
 const options = {

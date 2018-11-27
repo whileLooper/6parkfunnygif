@@ -4,7 +4,6 @@ class HelloMessage extends React.Component {
 
 
   render() {
-    // return <div className="image-list" dangerouslySetInnerHTML={{__html: this.props.content}}></div>;
     const {content} = this.props;
     let postList = [];
     if(content) {

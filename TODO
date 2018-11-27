@@ -1,6 +1,8 @@
 current task:
   ☐ get image links before index router get called
-  ☐ save post links to json
-  ☐ save each post content to json
-  ☐ remove 6park.com font
-  ☐ nodemon ignore file
+  ✔ save post links to json @done(18-11-27 16:03)
+  ✔ save each post content to json @done(18-11-27 16:03)
+  ✔ remove 6park.com font @done(18-11-27 16:03)
+  ✔ nodemon ignore file @done(18-11-27 16:02)
+  ☐ add scss support
+  ☐ image mobile site view
