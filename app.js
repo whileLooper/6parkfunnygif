@@ -20,8 +20,10 @@ const BASE_URL = "https://site.6parker.com/enter1/";
 
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
+// app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "reactViews"));
+app.set("view engine", "jsx");
+app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(logger("dev"));
 app.use(express.json());

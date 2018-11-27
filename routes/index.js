@@ -15,7 +15,8 @@ router.get('/', async function (req, res, next) {
   setTimeout(() => {
     const imageLinkList = scraperImages(postLinks);
     setTimeout(() => {
-      res.send('<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />' + imageLinkList.toString());
+      const content = '<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />' + imageLinkList.toString();
+      res.render('index', { content: content });
     }, 10000);
   }, 1000);
 });
@@ -98,7 +99,7 @@ function scraperImages(links) {
           }
           var $ = cheerio.load(iconv.decode(html, 'gb2312'));
           // const imageList = $('td.show_content > pre img');
-          
+
           // for (let key in imageList) {
           //   if (imageList[key].attribs && imageList[key].attribs.src) imageLinkList.push(imageList[key].attribs.src);
           // }
