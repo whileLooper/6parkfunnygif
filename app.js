@@ -73,7 +73,7 @@ function init(options) {
 
         // get each post list
         for (let key in postList) {
-          if (Number(key) < 5) {
+          if (Number(key) < 10) {
             let title = postList[key].children[0].children[0].data;
             postLinks.push(BASE_URL + postList[key].children[0].attribs.href);
           }
